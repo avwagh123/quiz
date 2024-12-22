@@ -1,5 +1,6 @@
 package com.bca.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,15 +19,16 @@ public class Choice {
     @Column(name = "choice_id")
     private int choiceId;
 
-    @ManyToOne
-    @JoinColumn(name = "question_id", nullable = false)
-    private Question question;
-
     @Column(name = "choice_text", nullable = false)
     private String choiceText;
 
     @Column(name = "is_correct", nullable = false)
     private boolean isCorrect;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = false)
+    @JsonBackReference
+    private Question question;
 
     public int getChoiceId() {
         return choiceId;

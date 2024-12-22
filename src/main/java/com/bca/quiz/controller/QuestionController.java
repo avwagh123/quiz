@@ -1,5 +1,6 @@
 package com.bca.quiz.controller;
 
+import com.bca.quiz.model.Choice;
 import com.bca.quiz.model.Question;
 import com.bca.quiz.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class QuestionController {
     public List<Question> findQuestionsByTestId(@PathVariable Long testId){
         return questionService.findQuestionsByTestId(testId);
     }
-    
+
     @PostMapping
     public Question save(@RequestBody Question question){
         return questionService.save(question);
@@ -52,4 +53,9 @@ public class QuestionController {
         questionService.deleteById(id);
     }
 
+    @GetMapping("/{questionId}/choices")
+    public List<Choice> getChoicesByQuestionId(@PathVariable Long questionId){
+        System.out.println("questionId: " + questionId);
+        return questionService.getChoicesByQuestionId(questionId);
+    }
 }

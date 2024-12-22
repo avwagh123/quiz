@@ -1,6 +1,7 @@
 package com.bca.quiz.service;
 
 import com.bca.quiz.dao.QuestionRepository;
+import com.bca.quiz.model.Choice;
 import com.bca.quiz.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,9 @@ public class QuestionService {
 
     public List<Question> findQuestionsByTestId(Long testId){
         return questionRepository.findQuestionsByTestId(testId);
+    }
+
+    public List<Choice> getChoicesByQuestionId(Long questionId) {
+        return questionRepository.getChoicesByQuestionId(questionId);
     }
 }

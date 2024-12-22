@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5083f81-621f-46f8-a01d-f1fb5ba7db26" name="Changes" comment="add controllers, services and repositories">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/QuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/TestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/QuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/QuestionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/TestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Choice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/QuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/TestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

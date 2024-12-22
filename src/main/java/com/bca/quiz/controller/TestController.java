@@ -1,5 +1,6 @@
 package com.bca.quiz.controller;
 
+import com.bca.quiz.model.Question;
 import com.bca.quiz.model.Test;
 import com.bca.quiz.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class TestController {
         return testService.findById(id);
     }
 
+    @GetMapping("{testId}/questions")
+    public List<Question> findQuestionsByTestId(@PathVariable Long testId){
+        return testService.findQuestionsByTestId(testId);
+    }
+
     @PostMapping
     public Test save(@RequestBody Test test){
         return testService.save(test);
@@ -46,4 +52,5 @@ public class TestController {
     public void deleteById(@PathVariable Long id){
         testService.deleteById(id);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.bca.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
@@ -23,6 +24,7 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "test_id", nullable = false)
+    @JsonBackReference
     private Test test;
 
     @Column(name = "question_text", nullable = false)

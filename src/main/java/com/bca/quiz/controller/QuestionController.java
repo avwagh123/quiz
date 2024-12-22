@@ -32,6 +32,11 @@ public class QuestionController {
         return questionService.findById(id);
     }
 
+    @GetMapping("test/{testId}")
+    public List<Question> findQuestionsByTestId(@PathVariable Long testId){
+        return questionService.findQuestionsByTestId(testId);
+    }
+    
     @PostMapping
     public Question save(@RequestBody Question question){
         return questionService.save(question);
@@ -46,4 +51,5 @@ public class QuestionController {
     public void deleteById(@PathVariable Long id){
         questionService.deleteById(id);
     }
+
 }

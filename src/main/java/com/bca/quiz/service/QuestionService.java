@@ -28,4 +28,8 @@ public class QuestionService {
     public void deleteById(Long questionId){
         questionRepository.deleteById(questionId);
     }
+
+    public List<Question> findQuestionsByTestId(Long testId){
+        return questionRepository.findQuestionsByTestId(testId);
+    }
 }

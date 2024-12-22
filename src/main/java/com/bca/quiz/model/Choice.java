@@ -10,6 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "choices")
 public class Choice {
@@ -24,6 +26,9 @@ public class Choice {
 
     @Column(name = "is_correct", nullable = false)
     private boolean isCorrect;
+
+    @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Timestamp createdAt;
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
@@ -62,6 +67,14 @@ public class Choice {
         isCorrect = correct;
     }
 
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public Choice(){
 
     }
@@ -70,5 +83,6 @@ public class Choice {
         this.question = question;
         this.choiceText = choiceText;
         this.isCorrect = isCorrect;
+        this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 }

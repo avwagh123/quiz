@@ -4,17 +4,20 @@ import com.bca.quiz.model.Choice;
 import com.bca.quiz.model.Question;
 import com.bca.quiz.model.QuestionType;
 import com.bca.quiz.model.Test;
+import com.bca.quiz.model.User;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
-
+    private UserRepository userRepository;
     private TestRepository testRepository;
     private QuestionRepository questionRepository;
     private ChoiceRepository choiceRepository;
 
-    public DataInitializer(TestRepository testRepository, QuestionRepository questionRepository, ChoiceRepository choiceRepository) {
+    public DataInitializer(UserRepository userRepository, TestRepository testRepository, QuestionRepository questionRepository, ChoiceRepository choiceRepository) {
+        this.userRepository = userRepository;
         this.testRepository = testRepository;
         this.questionRepository = questionRepository;
         this.choiceRepository = choiceRepository;
@@ -23,6 +26,9 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if(testRepository.count() == 0){
+            User user = new User("arti", "arti@gmail.com", "admin123");
+            userRepository.save(user);
+
             Test test1 = new Test("General Knowledge Quiz", "Test your general knowledge with this fun quiz.");
             testRepository.save(test1);
 

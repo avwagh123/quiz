@@ -28,5 +28,45 @@ public class Choice {
     @Column(name = "is_correct", nullable = false)
     private boolean isCorrect;
 
-    // Getters and setters
+    public int getChoiceId() {
+        return choiceId;
+    }
+
+    public void setChoiceId(int choiceId) {
+        this.choiceId = choiceId;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public String getChoiceText() {
+        return choiceText;
+    }
+
+    public void setChoiceText(String choiceText) {
+        this.choiceText = choiceText;
+    }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
+
+    public void setCorrect(boolean correct) {
+        isCorrect = correct;
+    }
+
+    public Choice(){
+
+    }
+
+    public Choice(Question question, String choiceText, boolean isCorrect) {
+        this.question = question;
+        this.choiceText = choiceText;
+        this.isCorrect = isCorrect;
+    }
 }

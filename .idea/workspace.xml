@@ -4,27 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5083f81-621f-46f8-a01d-f1fb5ba7db26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/ChoiceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/QuestionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/ResponseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/TestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/TestResultController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/ChoiceRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/QuestionRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/ResponseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/TestRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/TestResultRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/ChoiceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/QuestionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/ResponseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/TestResultService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/TestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="a5083f81-621f-46f8-a01d-f1fb5ba7db26" name="Changes" comment="add controllers, services and repositories">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/dao/DataInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Choice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bca/quiz/model/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +29,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -100,6 +90,19 @@
       <option name="presentableId" value="Default" />
       <updated>1734782974067</updated>
     </task>
+    <task id="LOCAL-00001" summary="add controllers, services and repositories">
+      <option name="closed" value="true" />
+      <created>1734852167460</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734852167460</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add controllers, services and repositories" />
+    <option name="LAST_COMMIT_MESSAGE" value="add controllers, services and repositories" />
   </component>
 </project>

@@ -1,22 +1,22 @@
 package com.bca.quiz.dao;
 
-import com.bca.quiz.model.Choice;
-import com.bca.quiz.model.Question;
-import com.bca.quiz.model.QuestionType;
-import com.bca.quiz.model.Test;
-import com.bca.quiz.model.User;
-
+import com.bca.quiz.model.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
+    private PasswordEncoder passwordEncoder;
+    private RoleRepository roleRepository;
     private UserRepository userRepository;
     private TestRepository testRepository;
     private QuestionRepository questionRepository;
     private ChoiceRepository choiceRepository;
 
-    public DataInitializer(UserRepository userRepository, TestRepository testRepository, QuestionRepository questionRepository, ChoiceRepository choiceRepository) {
+    public DataInitializer(PasswordEncoder passwordEncoder, RoleRepository roleRepository, UserRepository userRepository, TestRepository testRepository, QuestionRepository questionRepository, ChoiceRepository choiceRepository) {
+        this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
         this.userRepository = userRepository;
         this.testRepository = testRepository;
         this.questionRepository = questionRepository;
@@ -26,7 +26,10 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if(testRepository.count() == 0){
-            User user = new User("arti", "arti@gmail.com", "admin123");
+            Role adminRole = new Role("ADMIN");
+            roleRepository.save(adminRole);
+            String password = passwordEncoder.encode("admin123");
+            User user = new User("arti", "arti@gmail.com", password, adminRole);
             userRepository.save(user);
 
             Test test1 = new Test("General Knowledge Quiz", "Test your general knowledge with this fun quiz.");

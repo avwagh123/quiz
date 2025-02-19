@@ -1,11 +1,6 @@
 package com.bca.quiz.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -31,6 +26,10 @@ public class User {
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
     private Timestamp createdAt;
+
+    @ManyToOne(fetch = FetchType.EAGER) // Fetch role details when loading user
+    @JoinColumn(name = "role_id", nullable = false) // Foreign key column in "users" table
+    private Role role;
 
     // Getters and Setters
     public Integer getUserId() {
@@ -69,18 +68,27 @@ public class User {
         return createdAt;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public User(){
+    public User() {
 
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, Role role) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = role;
         this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 }

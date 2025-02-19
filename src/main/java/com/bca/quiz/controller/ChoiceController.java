@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("choice")
+@RequestMapping("api/v1/choice")
 public class ChoiceController {
 
     @Autowired

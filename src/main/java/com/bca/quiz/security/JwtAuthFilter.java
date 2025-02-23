@@ -1,6 +1,7 @@
 package com.bca.quiz.security;
 
 import com.bca.quiz.dao.UserRepository;
+import com.bca.quiz.model.Role;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import java.io.IOException;
 
 @Component
@@ -44,13 +46,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             com.bca.quiz.model.User user = userRepository.findByEmail(email)
                     .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-            if (user.getRole() == null) {
+            if (user.getRoles() == null) {
                 throw new IllegalStateException("User role is null");
             }
 
             UserDetails userDetails = User.withUsername(user.getEmail())
                     .password(user.getPassword())
-                    .roles(user.getRole().getName()) // Ensure Role.getName() exists
+                    .roles(user.getRoles().stream()
+                            .map(Role::getName) // Extract role names
+                            .toArray(String[]::new) // Convert to String array
+                    )
                     .build();
 
             if (jwtUtil.isTokenValid(token, user.getEmail())) {

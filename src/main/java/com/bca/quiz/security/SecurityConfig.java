@@ -40,7 +40,7 @@ public class SecurityConfig {
                                 "/v3/api-docs/**")
                         .permitAll()
                         .requestMatchers("/api/v1/**").hasRole("ADMIN")
-                        .requestMatchers("/api/v1/**").hasRole("STUDENT")
+                        .requestMatchers("/api/v1/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -5,6 +5,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Component
 public class DataInitializer implements CommandLineRunner {
     private PasswordEncoder passwordEncoder;
@@ -27,9 +30,17 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if(testRepository.count() == 0){
             Role adminRole = new Role("ADMIN");
+            Role userRole = new Role("USER");
+
             roleRepository.save(adminRole);
+            roleRepository.save(userRole);
+
+            Set<Role> adminRoles = new HashSet<>();
+            adminRoles.add(adminRole);
+            adminRoles.add(userRole);
+
             String password = passwordEncoder.encode("admin123");
-            User user = new User("arti", "arti@gmail.com", password, adminRole);
+            User user = new User("arti", "arti@gmail.com", password, adminRoles);
             userRepository.save(user);
 
             Test test1 = new Test("General Knowledge Quiz", "Test your general knowledge with this fun quiz.");

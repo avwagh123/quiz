@@ -2,6 +2,8 @@ package com.bca.quiz.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -11,7 +13,10 @@ public class Role {
     private Integer id;
 
     @Column(nullable = false, unique = true)
-    private String name; // Example: "ADMIN", "STUDENT"
+    private String name; // Example: "ADMIN", "USER"
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users; // A role can be assigned to multiple users
 
     public Role() {}
 
@@ -33,5 +38,13 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public Set<User> getUsers() {
+        return users;
     }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -27,9 +28,13 @@ public class User {
     @CreationTimestamp
     private Timestamp createdAt;
 
-    @ManyToOne(fetch = FetchType.EAGER) // Fetch role details when loading user
-    @JoinColumn(name = "role_id", nullable = false) // Foreign key column in "users" table
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
     // Getters and Setters
     public Integer getUserId() {
@@ -68,12 +73,12 @@ public class User {
         return createdAt;
     }
 
-    public Role getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public void setCreatedAt(Timestamp createdAt) {
@@ -84,11 +89,11 @@ public class User {
 
     }
 
-    public User(String username, String email, String password, Role role) {
+    public User(String username, String email, String password, Set<Role> roles) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
         this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 }

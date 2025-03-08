@@ -1,5 +1,6 @@
 package com.bca.quiz.model;
 
+import com.bca.quiz.requestdto.TestDetailsRequestDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tests")
-public class Test {
+public class TestDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +37,13 @@ public class Test {
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<Question> questions;
+
+    public TestDetails(TestDetailsRequestDTO testRequestDTO) {
+        this.testName = testRequestDTO.getTestName();
+        this.description = testRequestDTO.getDescription();
+        this.questions = testRequestDTO.getQuestions();
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+    }
 
     public int getTestId() {
         return testId;
@@ -84,11 +92,11 @@ public class Test {
         this.createdAt = createdAt;
     }
 
-    public Test(){
+    public TestDetails(){
 
     }
 
-    public Test(String testName, String description){
+    public TestDetails(String testName, String description){
         this.testName = testName;
         this.description = description;
         this.createdAt = new Timestamp(System.currentTimeMillis());

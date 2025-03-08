@@ -1,6 +1,7 @@
 package com.bca.quiz.controller;
 
-import com.bca.quiz.model.Choice;
+import com.bca.quiz.requestdto.ChoiceRequestDTO;
+import com.bca.quiz.responsedto.ChoiceResponseDTO;
 import com.bca.quiz.service.ChoiceService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +25,22 @@ public class ChoiceController {
     ChoiceService choiceService;
 
     @GetMapping
-    public List<Choice> findAll(){
+    public List<ChoiceResponseDTO> findAll(){
         return choiceService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Choice> findById(@PathVariable Long id){
+    public Optional<ChoiceResponseDTO> findById(@PathVariable Long id){
         return choiceService.findById(id);
     }
 
     @PostMapping
-    public Choice save(@RequestBody Choice choice){
+    public ChoiceResponseDTO save(@RequestBody ChoiceRequestDTO choice){
         return choiceService.save(choice);
     }
 
     @PutMapping
-    public Choice update(@RequestBody Choice choice){
+    public ChoiceResponseDTO update(@RequestBody ChoiceRequestDTO choice){
         return choiceService.save(choice);
     }
 

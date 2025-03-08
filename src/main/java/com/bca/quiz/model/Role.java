@@ -1,5 +1,6 @@
 package com.bca.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -16,6 +17,7 @@ public class Role {
     private String name; // Example: "ADMIN", "USER"
 
     @ManyToMany(mappedBy = "roles")
+    @JsonBackReference
     private Set<User> users; // A role can be assigned to multiple users
 
     public Role() {}

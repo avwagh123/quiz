@@ -1,6 +1,7 @@
 package com.bca.quiz.controller;
 
-import com.bca.quiz.model.User;
+import com.bca.quiz.requestdto.UserRequestDTO;
+import com.bca.quiz.responsedto.UserResponseDTO;
 import com.bca.quiz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,23 +24,23 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public List<User> findAll(){
+    public List<UserResponseDTO> findAll(){
         return userService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<User> findById(@PathVariable Long id){
+    public Optional<UserResponseDTO> findById(@PathVariable Long id){
         return userService.findById(id);
     }
 
     @PostMapping
-    public User save(@RequestBody User user){
-        return userService.save(user);
+    public UserResponseDTO save(@RequestBody UserRequestDTO userRequestDTO){
+        return userService.save(userRequestDTO);
     }
 
     @PutMapping
-    public User update(@RequestBody User user){
-        return userService.save(user);
+    public UserResponseDTO update(@RequestBody UserRequestDTO userRequestDTO){
+        return userService.save(userRequestDTO);
     }
 
     @DeleteMapping("/{id}")

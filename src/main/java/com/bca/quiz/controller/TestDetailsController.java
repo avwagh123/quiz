@@ -1,8 +1,9 @@
 package com.bca.quiz.controller;
 
-import com.bca.quiz.model.Question;
-import com.bca.quiz.model.Test;
-import com.bca.quiz.service.TestService;
+import com.bca.quiz.requestdto.TestDetailsRequestDTO;
+import com.bca.quiz.responsedto.QuestionResponseDTO;
+import com.bca.quiz.responsedto.TestDetailsResponseDTO;
+import com.bca.quiz.service.TestDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,34 +18,34 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/test")
-public class TestController {
+@RequestMapping("/api/v1/testdetails")
+public class TestDetailsController {
 
     @Autowired
-    TestService testService;
+    TestDetailsService testService;
 
     @GetMapping
-    public List<Test> findAll(){
+    public List<TestDetailsResponseDTO> findAll(){
         return testService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Test> findById(@PathVariable Long id){
+    public Optional<TestDetailsResponseDTO> findById(@PathVariable Long id){
         return testService.findById(id);
     }
 
     @GetMapping("{testId}/questions")
-    public List<Question> findQuestionsByTestId(@PathVariable Long testId){
+    public List<QuestionResponseDTO> findQuestionsByTestId(@PathVariable Long testId){
         return testService.findQuestionsByTestId(testId);
     }
 
     @PostMapping
-    public Test save(@RequestBody Test test){
+    public TestDetailsResponseDTO save(@RequestBody TestDetailsRequestDTO test){
         return testService.save(test);
     }
 
     @PutMapping
-    public Test update(@RequestBody Test test){
+    public TestDetailsResponseDTO update(@RequestBody TestDetailsRequestDTO test){
         return testService.save(test);
     }
 

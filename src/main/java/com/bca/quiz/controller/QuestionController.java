@@ -1,7 +1,8 @@
 package com.bca.quiz.controller;
 
-import com.bca.quiz.model.Choice;
-import com.bca.quiz.model.Question;
+import com.bca.quiz.requestdto.QuestionRequestDTO;
+import com.bca.quiz.responsedto.ChoiceResponseDTO;
+import com.bca.quiz.responsedto.QuestionResponseDTO;
 import com.bca.quiz.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,27 +25,27 @@ public class QuestionController {
     QuestionService questionService;
 
     @GetMapping
-    public List<Question> findAll(){
+    public List<QuestionResponseDTO> findAll(){
         return questionService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Question> findById(@PathVariable Long id){
+    public Optional<QuestionResponseDTO> findById(@PathVariable Long id){
         return questionService.findById(id);
     }
 
     @GetMapping("test/{testId}")
-    public List<Question> findQuestionsByTestId(@PathVariable Long testId){
+    public List<QuestionResponseDTO> findQuestionsByTestId(@PathVariable Long testId){
         return questionService.findQuestionsByTestId(testId);
     }
 
     @PostMapping
-    public Question save(@RequestBody Question question){
+    public QuestionResponseDTO save(@RequestBody QuestionRequestDTO question){
         return questionService.save(question);
     }
 
     @PutMapping
-    public Question update(@RequestBody Question question){
+    public QuestionResponseDTO update(@RequestBody QuestionRequestDTO question){
         return questionService.save(question);
     }
 
@@ -54,8 +55,7 @@ public class QuestionController {
     }
 
     @GetMapping("/{questionId}/choices")
-    public List<Choice> getChoicesByQuestionId(@PathVariable Long questionId){
-        System.out.println("questionId: " + questionId);
+    public List<ChoiceResponseDTO> getChoicesByQuestionId(@PathVariable Long questionId){
         return questionService.getChoicesByQuestionId(questionId);
     }
 }

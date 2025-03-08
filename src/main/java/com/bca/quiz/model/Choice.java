@@ -1,5 +1,6 @@
 package com.bca.quiz.model;
 
+import com.bca.quiz.requestdto.ChoiceRequestDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +20,7 @@ public class Choice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "choice_id")
-    private int choiceId;
+    private Long choiceId;
 
     @Column(name = "choice_text", nullable = false)
     private String choiceText;
@@ -35,11 +36,17 @@ public class Choice {
     @JsonBackReference
     private Question question;
 
-    public int getChoiceId() {
+    public Choice(ChoiceRequestDTO choiceRequestDTO) {
+        this.choiceText = choiceRequestDTO.getChoiceText();
+        this.isCorrect = choiceRequestDTO.isCorrect();
+        this.question = choiceRequestDTO.getQuestion();
+    }
+
+    public Long getChoiceId() {
         return choiceId;
     }
 
-    public void setChoiceId(int choiceId) {
+    public void setChoiceId(Long choiceId) {
         this.choiceId = choiceId;
     }
 
@@ -59,7 +66,7 @@ public class Choice {
         this.choiceText = choiceText;
     }
 
-    public boolean isCorrect() {
+    public boolean getCorrect() {
         return isCorrect;
     }
 

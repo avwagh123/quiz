@@ -1,6 +1,7 @@
 package com.bca.quiz.controller;
 
-import com.bca.quiz.model.TestResult;
+import com.bca.quiz.requestdto.TestResultRequestDTO;
+import com.bca.quiz.responsedto.TestResultResponseDTO;
 import com.bca.quiz.service.TestResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,29 +17,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/testresult")
+@RequestMapping("/api/v1/test-result")
 public class TestResultController {
 
     @Autowired
     TestResultService testResultService;
 
     @GetMapping
-    public List<TestResult> findAll(){
+    public List<TestResultResponseDTO> findAll(){
         return testResultService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<TestResult> findById(@PathVariable Long id){
+    public Optional<TestResultResponseDTO> findById(@PathVariable Long id){
         return testResultService.findById(id);
     }
 
     @PostMapping
-    public TestResult save(@RequestBody TestResult testResult){
+    public TestResultResponseDTO save(@RequestBody TestResultRequestDTO testResult){
         return testResultService.save(testResult);
     }
 
     @PutMapping
-    public TestResult update(@RequestBody TestResult testResult){
+    public TestResultResponseDTO update(@RequestBody TestResultRequestDTO testResult){
         return testResultService.save(testResult);
     }
 

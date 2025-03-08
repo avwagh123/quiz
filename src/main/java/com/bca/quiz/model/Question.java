@@ -1,5 +1,6 @@
 package com.bca.quiz.model;
 
+import com.bca.quiz.requestdto.QuestionRequestDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
@@ -14,7 +15,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
-    private int questionId;
+    private Long questionId;
 
     @Column(name = "question_text", nullable = false)
     private String questionText;
@@ -29,10 +30,16 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "test_id", nullable = false)
     @JsonBackReference
-    private Test test;
+    private TestDetails test;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Choice> choices;
+
+    public Question(QuestionRequestDTO questionRequestDTO) {
+        this.questionText = questionRequestDTO.getQuestionText();
+        this.questionType = questionRequestDTO.getQuestionType();
+        this.test = questionRequestDTO.getTest();
+    }
 
     public List<Choice> getChoices() {
         return choices;
@@ -49,19 +56,19 @@ public class Question {
         choices.add(choice);
     }
 
-    public int getQuestionId() {
+    public Long getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(int questionId) {
+    public void setQuestionId(Long questionId) {
         this.questionId = questionId;
     }
 
-    public Test getTest() {
+    public TestDetails getTest() {
         return test;
     }
 
-    public void setTest(Test test) {
+    public void setTest(TestDetails test) {
         this.test = test;
     }
 
@@ -93,7 +100,7 @@ public class Question {
 
     }
 
-    public Question(Test test, String questionText, QuestionType questionType) {
+    public Question(TestDetails test, String questionText, QuestionType questionType) {
         this.test = test;
         this.questionText = questionText;
         this.questionType = questionType;

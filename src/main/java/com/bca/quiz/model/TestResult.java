@@ -1,5 +1,6 @@
 package com.bca.quiz.model;
 
+import com.bca.quiz.requestdto.TestResultRequestDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class TestResult {
 
     @ManyToOne
     @JoinColumn(name = "test_id", nullable = false)
-    private Test test;
+    private TestDetails test;
 
     @Column(name = "score", nullable = false)
     private int score;
@@ -36,5 +37,59 @@ public class TestResult {
     @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp createdAt;
 
-    // Getters and setters
+    public TestResult(TestResultRequestDTO testResultRequestDTO) {
+        this.user = testResultRequestDTO.getUser();
+        this.test = testResultRequestDTO.getTest();
+        this.score = testResultRequestDTO.getScore();
+        this.totalQuestions = testResultRequestDTO.getTotalQuestions();
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+    }
+
+    public int getResultId() {
+        return resultId;
+    }
+
+    public void setResultId(int resultId) {
+        this.resultId = resultId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public TestDetails getTest() {
+        return test;
+    }
+
+    public void setTest(TestDetails test) {
+        this.test = test;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    public void setTotalQuestions(int totalQuestions) {
+        this.totalQuestions = totalQuestions;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
 }

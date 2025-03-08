@@ -13,11 +13,11 @@ public class DataInitializer implements CommandLineRunner {
     private PasswordEncoder passwordEncoder;
     private RoleRepository roleRepository;
     private UserRepository userRepository;
-    private TestRepository testRepository;
+    private TestDetailsRepository testRepository;
     private QuestionRepository questionRepository;
     private ChoiceRepository choiceRepository;
 
-    public DataInitializer(PasswordEncoder passwordEncoder, RoleRepository roleRepository, UserRepository userRepository, TestRepository testRepository, QuestionRepository questionRepository, ChoiceRepository choiceRepository) {
+    public DataInitializer(PasswordEncoder passwordEncoder, RoleRepository roleRepository, UserRepository userRepository, TestDetailsRepository testRepository, QuestionRepository questionRepository, ChoiceRepository choiceRepository) {
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
@@ -40,10 +40,10 @@ public class DataInitializer implements CommandLineRunner {
             adminRoles.add(userRole);
 
             String password = passwordEncoder.encode("admin123");
-            User user = new User("arti", "arti@gmail.com", password, adminRoles);
+            User user = new User("arti@gmail.com", password, adminRoles);
             userRepository.save(user);
 
-            Test test1 = new Test("General Knowledge Quiz", "Test your general knowledge with this fun quiz.");
+            TestDetails test1 = new TestDetails("General Knowledge Quiz", "Test your general knowledge with this fun quiz.");
             testRepository.save(test1);
 
             Question test1Que1 = new Question(test1, "What is the capital of France?", QuestionType.SINGLE);
@@ -72,7 +72,7 @@ public class DataInitializer implements CommandLineRunner {
             choiceRepository.save(test1Que2Choice3);
             choiceRepository.save(test1Que2Choice4);
 
-            Test test2 = new Test("Science Basics", "A quiz on basic science concepts.");
+            TestDetails test2 = new TestDetails("Science Basics", "A quiz on basic science concepts.");
             testRepository.save(test2);
 
             Question test2Que1 = new Question(test2, "Is water made up of hydrogen and oxygen", QuestionType.SINGLE);
@@ -95,6 +95,8 @@ public class DataInitializer implements CommandLineRunner {
             choiceRepository.save(test2Que2Choice2);
             choiceRepository.save(test2Que2Choice3);
             choiceRepository.save(test2Que2Choice4);
+
+
         }
     }
 }

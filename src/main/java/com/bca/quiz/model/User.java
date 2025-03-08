@@ -1,5 +1,7 @@
 package com.bca.quiz.model;
 
+import com.bca.quiz.requestdto.UserRequestDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -14,9 +16,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
-
-    @Column(name = "username", nullable = false, unique = true, length = 50)
-    private String username;
 
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
@@ -34,6 +33,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @JsonBackReference
     private Set<Role> roles;
 
     // Getters and Setters
@@ -43,14 +43,6 @@ public class User {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
@@ -89,11 +81,19 @@ public class User {
 
     }
 
-    public User(String username, String email, String password, Set<Role> roles) {
-        this.username = username;
+    public User(String email, String password, Set<Role> roles) {
         this.email = email;
         this.password = password;
         this.roles = roles;
         this.createdAt = new Timestamp(System.currentTimeMillis());
     }
+
+    public User(UserRequestDTO userRequestDTO) {
+        this.email = userRequestDTO.getEmail();
+        //this.password = passwordEncoder.encode(userRequestDTO.getPassword());
+        this.password = userRequestDTO.getPassword();
+        this.roles = userRequestDTO.getRoles();
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+    }
+
 }

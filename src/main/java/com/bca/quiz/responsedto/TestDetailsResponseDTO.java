@@ -22,9 +22,11 @@ public class TestDetailsResponseDTO {
         this.createdAt = test.getCreatedAt();
         List<Question> questionsList = test.getQuestions();
 
-        questionsList.forEach(
-                question -> question.getChoices()
-                        .forEach(choice -> choice.setCorrect(false)));
+        if(questionsList!=null) {
+            questionsList.forEach(
+                    question -> question.getChoices()
+                            .forEach(choice -> choice.setCorrect(false)));
+        }
         this.questions = questionsList;
     }
 

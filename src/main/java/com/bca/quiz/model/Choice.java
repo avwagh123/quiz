@@ -2,6 +2,7 @@ package com.bca.quiz.model;
 
 import com.bca.quiz.requestdto.ChoiceRequestDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Choice {
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore
     private Question question;
 
     public Choice(ChoiceRequestDTO choiceRequestDTO) {

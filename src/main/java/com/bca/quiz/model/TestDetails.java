@@ -2,6 +2,7 @@ package com.bca.quiz.model;
 
 import com.bca.quiz.requestdto.TestDetailsRequestDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,9 +35,13 @@ public class TestDetails {
     @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp createdAt;
 
-    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonIgnore
     private List<Question> questions;
+
+    @OneToMany(mappedBy = "testDetails", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<TestAttempt> testAttempts;
 
     public TestDetails(TestDetailsRequestDTO testRequestDTO) {
         this.testName = testRequestDTO.getTestName();
@@ -100,5 +105,13 @@ public class TestDetails {
         this.testName = testName;
         this.description = description;
         this.createdAt = new Timestamp(System.currentTimeMillis());
+    }
+
+    public List<TestAttempt> getTestAttempts() {
+        return testAttempts;
+    }
+
+    public void setTestAttempts(List<TestAttempt> testAttempts) {
+        this.testAttempts = testAttempts;
     }
 }

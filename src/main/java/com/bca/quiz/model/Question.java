@@ -2,6 +2,7 @@ package com.bca.quiz.model;
 
 import com.bca.quiz.requestdto.QuestionRequestDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -29,16 +30,20 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "test_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore
     private TestDetails test;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     List<Choice> choices;
 
     public Question(QuestionRequestDTO questionRequestDTO) {
-        this.questionText = questionRequestDTO.getQuestionText();
+            this.questionText = questionRequestDTO.getQuestionText();
         this.questionType = questionRequestDTO.getQuestionType();
         this.test = questionRequestDTO.getTest();
+        questionRequestDTO.getChoices().forEach(choice -> choice.setCreatedAt(new Timestamp(System.currentTimeMillis())));
+        questionRequestDTO.getChoices().forEach(choice -> choice.setQuestion(this));
+        this.choices = questionRequestDTO.getChoices();
+        this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 
     public List<Choice> getChoices() {

@@ -2,6 +2,7 @@ package com.bca.quiz.model;
 
 import com.bca.quiz.requestdto.UserRequestDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -33,7 +34,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    @JsonBackReference
+    @JsonIgnore
     private Set<Role> roles;
 
     // Getters and Setters

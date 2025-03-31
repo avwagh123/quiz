@@ -1,5 +1,7 @@
 package com.bca.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -20,7 +22,8 @@ public class TestAttempt {
     @JoinColumn(name = "test_id", nullable = false)
     private TestDetails testDetails;
 
-    @OneToMany(mappedBy = "testAttempt", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "testAttempt", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<TestResponse> responses = new ArrayList<>();
 
     private LocalDateTime attemptDate;

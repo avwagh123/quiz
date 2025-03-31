@@ -95,8 +95,6 @@ public class DataInitializer implements CommandLineRunner {
             choiceRepository.save(test2Que2Choice2);
             choiceRepository.save(test2Que2Choice3);
             choiceRepository.save(test2Que2Choice4);
-
-
         }
     }
 }

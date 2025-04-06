@@ -4,7 +4,6 @@ import com.bca.quiz.dao.UserRepository;
 import com.bca.quiz.model.User;
 import com.bca.quiz.requestdto.UserRequestDTO;
 import com.bca.quiz.responsedto.UserResponseDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +13,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
-    @Autowired
-    UserRepository userRepository;
 
-    @Autowired
+    UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public List<UserResponseDTO> findAll(){
         List<User> users = userRepository.findAll();
@@ -33,12 +35,17 @@ public class UserService {
     }
 
     public UserResponseDTO save(UserRequestDTO userRequestDTO){
-        User requestUser = new User(userRequestDTO);
+        User requestUser = new User(userRequestDTO, passwordEncoder);
         User user = userRepository.save(requestUser);
         return new UserResponseDTO(user);
     }
 
     public void deleteById(Long userId){
         userRepository.deleteById(userId);
+    }
+
+    public Integer findByEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        return user.get().getUserId();
     }
 }

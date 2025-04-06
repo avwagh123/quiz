@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 import java.util.Set;
@@ -89,10 +91,10 @@ public class User {
         this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 
-    public User(UserRequestDTO userRequestDTO) {
+    public User(UserRequestDTO userRequestDTO, PasswordEncoder passwordEncoder) {
         this.email = userRequestDTO.getEmail();
-        //this.password = passwordEncoder.encode(userRequestDTO.getPassword());
-        this.password = userRequestDTO.getPassword();
+        this.password = passwordEncoder.encode(userRequestDTO.getPassword());
+        //this.password = userRequestDTO.getPassword();
         this.roles = userRequestDTO.getRoles();
         this.createdAt = new Timestamp(System.currentTimeMillis());
     }

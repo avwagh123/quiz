@@ -40,6 +40,7 @@ public class DataInitializer implements CommandLineRunner {
             adminRoles.add(userRole);
 
             String password = passwordEncoder.encode("admin123");
+            //String password = "admin123";
             User user = new User("arti@gmail.com", password, adminRoles);
             userRepository.save(user);
 

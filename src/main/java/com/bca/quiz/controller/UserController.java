@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/user")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
@@ -40,5 +40,10 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id){
         userService.deleteById(id);
+    }
+
+    @GetMapping("/email/{email}")
+    public Integer getUserByEmail(@PathVariable String email) {
+        return userService.findByEmail(email);
     }
 }
